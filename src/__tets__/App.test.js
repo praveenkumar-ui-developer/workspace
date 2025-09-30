@@ -1,24 +1,26 @@
-import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import App from "../App";
+import TemperatureConverter from "../components/TemperatureConverter";
 
-test("initially shows Login button", () => {
-  render(<App />);
-  const loginButton = screen.getByText(/Login/i);
-  expect(loginButton).toBeInTheDocument();
+test("renders Temperature Converter heading", () => {
+  render(<TemperatureConverter />);
+  expect(screen.getByText(/temperature converter/i)).toBeInTheDocument();
 });
 
-test("shows welcome message and Logout button after login", () => {
-  render(<App />);
-  const loginButton = screen.getByText(/Login/i);
-  fireEvent.click(loginButton);
-  expect(screen.getByText(/Welcome, User!/i)).toBeInTheDocument();
-  expect(screen.getByText(/Logout/i)).toBeInTheDocument();
+test("input updates celsius value", () => {
+  render(<TemperatureConverter />);
+  const input = screen.getByPlaceholderText("Celsius");
+  fireEvent.change(input, { target: { value: "25" } });
+  expect(input.value).toBe("25");
 });
 
-test("returns to Login button after logout", () => {
-  render(<App />);
-  fireEvent.click(screen.getByText(/Login/i));
-  fireEvent.click(screen.getByText(/Logout/i));
-  expect(screen.getByText(/Login/i)).toBeInTheDocument();
+test("displays correct Fahrenheit value", () => {
+  render(<TemperatureConverter />);
+  const input = screen.getByPlaceholderText("Celsius");
+  fireEvent.change(input, { target: { value: "25" } });
+  expect(screen.getByText(/77\.00 °F/i)).toBeInTheDocument();
+});
+
+test("displays '-' for empty input", () => {
+  render(<TemperatureConverter />);
+  expect(screen.getByText(/temperature in fahrenheit: -/i)).toBeInTheDocument();
 });
