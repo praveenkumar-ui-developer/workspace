@@ -1,46 +1,23 @@
-import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import App from "../App"; // correct path
+import App from "../App";
 
-
-test("renders To-Do List heading", () => {
+test("renders Theme Switcher heading", () => {
   render(<App />);
-  expect(screen.getByText(/To-Do List/i)).toBeInTheDocument();
+  const headingElement = screen.getByText(/theme switcher/i);
+  expect(headingElement).toBeInTheDocument();
 });
 
-test("adds a new task", () => {
+test("renders Light Mode initially", () => {
   render(<App />);
-  const input = screen.getByPlaceholderText(/Enter a task/i);
-  const button = screen.getByText(/Add/i);
-
-  fireEvent.change(input, { target: { value: "Learn React" } });
-  fireEvent.click(button);
-
-  expect(screen.getByText(/Learn React/i)).toBeInTheDocument();
+  const modeText = screen.getByText(/light mode active/i);
+  expect(modeText).toBeInTheDocument();
 });
 
-test("marks a task as completed", () => {
+test("switches to Dark Mode when button is clicked", () => {
   render(<App />);
-  const input = screen.getByPlaceholderText(/Enter a task/i);
-  const button = screen.getByText(/Add/i);
-
-  fireEvent.change(input, { target: { value: "Finish Assignment" } });
+  const button = screen.getByRole("button", { name: /switch to dark mode/i });
   fireEvent.click(button);
 
-  const checkbox = screen.getByRole("checkbox");
-  fireEvent.click(checkbox);
-
-  expect(checkbox.checked).toBe(true);
-});
-
-test("updates pending task counter", () => {
-  render(<App />);
-  const input = screen.getByPlaceholderText(/Enter a task/i);
-  const button = screen.getByText(/Add/i);
-
-  fireEvent.change(input, { target: { value: "Task 1" } });
-  fireEvent.click(button);
-
-  expect(screen.getByText(/Pending Tasks: 1/i)).toBeInTheDocument();
+  const darkModeText = screen.getByText(/dark mode active/i);
+  expect(darkModeText).toBeInTheDocument();
 });
