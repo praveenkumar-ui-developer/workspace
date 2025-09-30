@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+**Problem Description: Temperature Converter (Celsius to Fahrenheit)
+**
+**Objective:
+Create a React component that allows the user to input a temperature in Celsius and converts it to Fahrenheit. The component should dynamically update the Fahrenheit value as the user types.
+**
+Steps to Solve the Problem
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Component Setup:**
 
-## Available Scripts
+Create a functional component TemperatureConverter.
 
-In the project directory, you can run:
+Use the useState hook to store the Celsius value.
 
-### `npm start`
+**Input Field:**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Add an <input> element for the user to enter the Celsius temperature.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Bind the input value to the state (celsius).
 
-### `npm test`
+Update the state whenever the user types using onChange.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Conversion Logic:**
 
-### `npm run build`
+Create a function to convert Celsius to Fahrenheit:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Fahrenheit = (Celsius * 9/5) + 32
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If the input is empty or invalid, display "-".
 
-### `npm run eject`
+Display Result:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Show the converted Fahrenheit value dynamically below the input field.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Format the value to 2 decimal places for clarity.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Expected Behavior (Based on Test Cases)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Heading is displayed:**
 
-## Learn More
+Test: renders Temperature Converter heading
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Checks if the component displays the heading Temperature Converter.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Input updates state:**
 
-### Code Splitting
+Test: input updates celsius value
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Typing a value into the input updates the component state.
 
-### Analyzing the Bundle Size
+Correct conversion is displayed:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Test: displays correct Fahrenheit value
 
-### Making a Progressive Web App
+Example: Typing 25 Celsius should display 77.00 °F.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Empty input shows placeholder:
 
-### Advanced Configuration
+Test: displays '-' for empty input
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+If input is empty, Fahrenheit value shows "-".
 
-### Deployment
+**How to Implement**
+Import useState from React.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Create a state variable for Celsius.
 
-### `npm run build` fails to minify
+Bind the input to this state and update state on change.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Create a conversion function for Celsius → Fahrenheit.
+
+Render the heading, input, and converted value dynamically.
+
+Add proper formatting for numbers and handle empty input.
+
+**output**
+**before checking**
+
+<img width="579" height="323" alt="image" src="https://github.com/user-attachments/assets/3aadca5e-5bbb-4ba3-a86e-574bc884f213" />
+
+**Checking temperature**
+
+<img width="688" height="425" alt="image" src="https://github.com/user-attachments/assets/63705cb9-62b7-4262-a56b-05c19783f38f" />
