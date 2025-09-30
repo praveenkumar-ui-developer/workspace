@@ -20,3 +20,4 @@ test("switches theme on button click", () => {
   const darkModeElement = screen.getByText(/dark mode active/i); // update based on your app logic
   expect(darkModeElement).toBeInTheDocument();
 });
+// done
