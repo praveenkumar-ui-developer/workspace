@@ -1,23 +1,24 @@
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import App from "../App";
 
-test("renders Theme Switcher heading", () => {
+test("initially shows Login button", () => {
   render(<App />);
-  const headingElement = screen.getByText(/theme switcher/i); // matches <h3>Theme Switcher</h3>
-  expect(headingElement).toBeInTheDocument();
+  const loginButton = screen.getByText(/Login/i);
+  expect(loginButton).toBeInTheDocument();
 });
 
-test("renders current mode text", () => {
+test("shows welcome message and Logout button after login", () => {
   render(<App />);
-  const modeElement = screen.getByText(/light mode active/i); // matches <h2>Light Mode Active</h2>
-  expect(modeElement).toBeInTheDocument();
+  const loginButton = screen.getByText(/Login/i);
+  fireEvent.click(loginButton);
+  expect(screen.getByText(/Welcome, User!/i)).toBeInTheDocument();
+  expect(screen.getByText(/Logout/i)).toBeInTheDocument();
 });
 
-test("switches theme on button click", () => {
+test("returns to Login button after logout", () => {
   render(<App />);
-  const button = screen.getByRole("button", { name: /switch to dark/i });
-  fireEvent.click(button);
-  const darkModeElement = screen.getByText(/dark mode active/i); // update based on your app logic
-  expect(darkModeElement).toBeInTheDocument();
+  fireEvent.click(screen.getByText(/Login/i));
+  fireEvent.click(screen.getByText(/Logout/i));
+  expect(screen.getByText(/Login/i)).toBeInTheDocument();
 });
-// done
